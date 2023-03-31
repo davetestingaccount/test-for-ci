@@ -15,7 +15,7 @@ jobs:
           make test
       - name: Build binary
         run: |
-          go build -v -a -o release/api-binary ./cmd/main.go
+          CGO_ENABLED=0 go build -v -a -o release/api-binary ./cmd/main.go
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
