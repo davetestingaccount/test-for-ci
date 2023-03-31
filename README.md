@@ -10,6 +10,7 @@ use command `air`
 
 ### test api Hot reload
 
+asfasf
 run `air -c .air_test.toml`
 
 ## Run test api
