@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Set up Docker Compose
         run: docker-compose --version
+      - name: Build docker
+        run: docker-compose build
       - name: Start Docker Compose
         run: docker-compose up -d
       - name: Wait for services to start
