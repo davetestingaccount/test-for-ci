@@ -10,15 +10,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set up Docker Compose
-        run: docker-compose --version
-      - name: Build docker
-        run: docker-compose build
-      - name: Start Docker Compose
-        run: docker-compose up -d
-      - name: Wait for services to start
-        run: sleep 10
-      - name: Build and test with Docker Compose
-        run: docker-compose exec app go test ./...
-      - name: Stop Docker Compose
-        run: docker-compose down
+      - name: test
+        run: |
+          make test
