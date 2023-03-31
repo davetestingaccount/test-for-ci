@@ -14,7 +14,7 @@ run `air -c .air_test.toml`
 ## Run test api
 
 run `go run cmd/test-api.go` in the container.
-
+as
 ## Migrate
 
 ### create new migration
