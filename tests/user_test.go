@@ -22,7 +22,6 @@ func TestUser(t *testing.T) {
 
 	// assert response
 	assert.Equal(t, 200, w.Code)
-	assert.Equal(t, 400, w.Code)
 	assert.Equal(t, "user", w.Body.String())
 
 	if w.Code != 200 {
