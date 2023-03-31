@@ -13,3 +13,9 @@ jobs:
       - name: test
         run: |
           make test
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: davetestingaccount/test-for-ci
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
