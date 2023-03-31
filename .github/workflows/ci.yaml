@@ -16,6 +16,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
-          name: davetestingaccount/test-for-ci
+          name: davetestingaccount/test-for-ci/test-for-ci
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: ghcr.io
