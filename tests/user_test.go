@@ -2,11 +2,11 @@ package tests
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
+	"jd_workout_golang/internal/router"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"jd_workout_golang/internal/router"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestUser(t *testing.T) {
@@ -22,8 +22,9 @@ func TestUser(t *testing.T) {
 
 	// assert response
 	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, 400, w.Code)
 	assert.Equal(t, "user", w.Body.String())
-	
+
 	if w.Code != 200 {
 		t.Errorf("Response code is %v", w.Code)
 	}
