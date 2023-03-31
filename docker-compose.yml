@@ -26,5 +26,6 @@ services:
       - .:/app
     working_dir: /app
     command: ["tail", "-f", "/dev/null"]
+    condition: "${PROCESS_TYPE:-ci} != cd"
 volumes:
   mysql_data:
