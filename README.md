@@ -5,7 +5,7 @@
 * `docker-compose up -d`
 
 ## Hot reload
-
+asfasf
 use command `air`
 
 ### test api Hot reload
