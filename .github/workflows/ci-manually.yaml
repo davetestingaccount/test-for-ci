@@ -1,0 +1,37 @@
+name: CI-manually
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'tags'
+        required: true
+      commitish:
+        description: 'branch or commit id'
+        required: true
+        default: 'master'
+      project_column:
+        description: 'project_column'
+        required: true
+        default: 'stage'
+jobs:
+  test:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: test3
+          release_name: test4
+          body: |
+            Changes in this Release
+            - First Change 123
+            - Second Change 456
+          draft: false
+          prerelease: false
