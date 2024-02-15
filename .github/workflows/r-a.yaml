@@ -1,0 +1,41 @@
+name: Update Release Notes
+
+on:
+  release:
+    types: [published, unpublished]
+
+jobs:
+  update-release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Modify Release Notes
+        run: |
+          release_note=$(cat $GITHUB_EVENT_PATH | jq -r '.release.body')
+          updated_note="$release_note hello world"
+          echo "$updated_note" > updated_release_note.txt
+          echo "::set-output name=updated_note::$(cat updated_release_note.txt)"
+
+      - name: Update Release
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const updatedNote = '${{ steps.modify.outputs.updated_note }}';
+            const context = github.context;
+            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+
+            const { data: release } = await octokit.repos.getRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: context.payload.release.id
+            });
+
+            await octokit.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: context.payload.release.id,
+              body: updatedNote
+            });
