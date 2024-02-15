@@ -24,18 +24,18 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const updatedNote = '${{ steps.modify.outputs.updated_note }}';
-            const context = github.context;
+            const contextA = github.context;
             const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
 
             const { data: release } = await octokit.repos.getRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              release_id: context.payload.release.id
+              owner: contextA.repo.owner,
+              repo: contextA.repo.repo,
+              release_id: contextA.payload.release.id
             });
 
             await octokit.repos.updateRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              release_id: context.payload.release.id,
+              owner: contextA.repo.owner,
+              repo: contextA.repo.repo,
+              release_id: contextA.payload.release.id,
               body: updatedNote
             });
