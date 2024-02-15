@@ -27,32 +27,8 @@ jobs:
         with:
           result-encoding: string
           script: |
-            console.log(context)
-            const {PROJECT_COLUMN} = process.env;
-            console.log(PROJECT_COLUMN);
-            const query = 'query ($owner: String!, $name: String!) { repository(owner: $owner, name: $name) { projects (first:2, states: OPEN) { nodes { name url id columns (first:100) { nodes { id name cards (first:100, archivedStates: NOT_ARCHIVED) { pageInfo { hasNextPage endCursor hasPreviousPage startCursor } totalCount edges { cursor } nodes { content { __typename ... on Issue { title id number } ... on PullRequest { title id } } } } } } } } } } ';
-            const variables = {
-              owner: context.repo.owner,
-              name: context.repo.repo,
-            }
-            const result = await github.graphql(query, variables)
-            console.log(result);
-            let str = '';
-            for (column of result.repository.projects.nodes[0].columns.nodes) {
-              console.log(column.name,PROJECT_COLUMN, column.name === `${PROJECT_COLUMN}`);
-              if (column.name === `${PROJECT_COLUMN}`) {
-                for (card of column.cards.nodes) {
-                  console.log(card)
-                  if (card.content !== null && card.content.__typename === 'Issue') {
-                    str += ' - ' + card.content.title + " #" + card.content.number + "\n"
-                  }
-                }
-              }
-            }
-            console.log(str)
-            if (str === '') {
-              throw '找不到對應的issues'
-            }
+            let str = 'test aaavvv';
+            
             return str
       - name: Checkout code
         uses: actions/checkout@v2
