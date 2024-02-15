@@ -25,17 +25,15 @@ jobs:
           script: |
             const updatedNote = '${{ steps.modify.outputs.updated_note }}';
             const contextA = github.context;
-            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
 
-            const { data: release } = await octokit.repos.getRelease({
-              owner: contextA.repo.owner,
-              repo: contextA.repo.repo,
-              release_id: contextA.payload.release.id
+            const response = await github.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: "${{ github.event.client_payload.ReleaseBranchName }}"
             });
-
-            await octokit.repos.updateRelease({
-              owner: contextA.repo.owner,
-              repo: contextA.repo.repo,
-              release_id: contextA.payload.release.id,
+            github.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: response.data.id,
               body: updatedNote
             });
