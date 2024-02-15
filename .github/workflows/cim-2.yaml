@@ -29,7 +29,7 @@ jobs:
           script: |
             let str = 'test aaavvv\n';
             
-            str .= '依「系統安全要求檢查表」的適用項目 9、10.1 進行安全性評估後，此次的調整並無安全性疑慮。';
+            str += '依「系統安全要求檢查表」的適用項目 9、10.1 進行安全性評估後，此次的調整並無安全性疑慮。';
             
             return str
       - name: Checkout code
