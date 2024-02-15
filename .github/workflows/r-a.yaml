@@ -24,9 +24,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const updatedNote = '${{ steps.modify.outputs.updated_note }}';
+            let updatedNote = '${{ steps.modify.outputs.updated_note }}';
             const contextA = github.context;
 
+            updatedNote = 'fkfkfkfkfkfkkffkfkkf';
             console.log("updatedNote....aaaaaaaaa");
             console.log(updatedNote);
 
