@@ -9,18 +9,13 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
       - name: Update Release
         uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             let updatedNote = context.payload.release.body;
-            console.log("updatedNote....aaaaaaaaa");
-            console.log(updatedNote);
-
-            updatedNote += "\n\n\n\n auto add zz1234";
+            updatedNote += "\n\n\n\n 依「系統安全要求檢查表」的適用項目 9、10.1 進行安全性評估後，此次的調整並無安全性疑慮。";
             
             github.repos.updateRelease({
               owner: context.repo.owner,
