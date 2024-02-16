@@ -20,6 +20,7 @@ jobs:
             console.log("updatedNote....aaaaaaaaa");
             console.log(updatedNote);
 
+            updatedNote += "\n\n\n\n auto add zz1234";
             const response = await github.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
