@@ -21,14 +21,10 @@ jobs:
             console.log(updatedNote);
 
             updatedNote += "\n\n\n\n auto add zz1234";
-            const response = await github.repos.getReleaseByTag({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag: "wwss"
-            });
+            
             github.repos.updateRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              release_id: response.data.id,
+              release_id: context.payload.release.id;
               body: updatedNote
             });
