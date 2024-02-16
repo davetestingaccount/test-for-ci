@@ -27,7 +27,7 @@ jobs:
             let updatedNote = '${{ steps.modify.outputs.updated_note }}';
             const contextA = github.context;
 
-            updatedNote = 'fkfkfkfkfkfkkffkfkkf';
+            updatedNote = 'oaoaoaoaoaoa 0.0';
             console.log("updatedNote....aaaaaaaaa");
             console.log(updatedNote);
 
