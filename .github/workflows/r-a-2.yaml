@@ -25,6 +25,6 @@ jobs:
             github.repos.updateRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              release_id: context.payload.release.id;
+              release_id: context.payload.release.id,
               body: updatedNote
             });
